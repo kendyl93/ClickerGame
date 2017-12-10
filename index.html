@@ -15,9 +15,17 @@
     <div class="row">
 
         <div class="col-md-12 ">
-            <p style="text-align: center"><button id='btn_click' class="bnt btn-lg btn-success">Click Me!</button></p>
+            <p style="text-align: center">
+              <button id="btn_click_Barcelona" class="bnt btn-lg btn-success">Barcelona !</button>
+            </p>
+            <p style="text-align: center">Click counts:<span id="counter_Barcelona"></span></p>
+        </div>
 
-            <p style="text-align: center">Click counts:<span id="counter"></span></p>
+        <div class="col-md-12 ">
+            <p style="text-align: center">
+              <button id="btn_click_RealMadrit" class="bnt btn-lg btn-success">Real Madrit !</button>
+            </p>
+            <p style="text-align: center">Click counts:<span id="counter_RealMadrit"></span></p>
         </div>
     </div>
 </div>
@@ -33,18 +41,34 @@
            console.log('Yeah I am connected!!');
         });
 
+
+        // ********************BARCELONA********************
         //Listen from server.js
-        socket.on('click_count',function(value)
+        socket.on('click_count_Barcelona',function(value)
         {
-            $('#counter').html(value);//Set new count value
+            $('#counter_Barcelona').html(value);//Set new count value
+            console.log('Barca .on');
         });
 
         //Says to server that the button has been clicked
-        $('#btn_click').click(function()
+        $('#btn_click_Barcelona').click(function()
         {
-            socket.emit('clicked');//Emitting user click
+            socket.emit('clicked_Barcelona');//Emitting user click
+            console.log('Barca .emit');
         });
 
+        // ********************REAL MADRIT********************
+        socket.on('click_count_RealMadrit',function(value)
+        {
+            $('#counter_RealMadrit').html(value);//Set new count value
+            console.log('Real .on');
+        });
+        //Says to server that the button has been clicked
+        $('#btn_click_RealMadrit').click(function()
+        {
+            socket.emit('clicked_RealMadrit');//Emitting user click
+            console.log('Real .emit');
+        });
     });
 </script>
 </body>
